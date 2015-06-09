@@ -1,6 +1,6 @@
 '----------------------------------------------------------------------------------------------
 '寸法計測値+5.vbs
-'環境:Win7+LT2015(dxf2000)+acadremon.dll
+'環境:Win7(64bit)+LT2015(dxf2000)+acadremon.dll
 'ファイル2つ必要です。
 'ソースファイル名実行用.vbs (ソースファイル名の後ろに「実行用」3文字を追加する。)
 'ソースファイル名.vbs       (ソース用ファイル)
@@ -10,7 +10,7 @@ Dim Acad
 Call Main 
 Sub Main()
     Set Acad = CreateObject("AcadRemocon.Body")
-''''If Not Acad.acDxfOut("", "DWG", False) Then Er: Exit Sub 　　　　　　　　　　　　　　　　　　　　'修正箇所 
+''''If Not Acad.acDxfOut("", "DWG", False) Then Er: Exit Sub 　　　　　　　　　　　　　　　　　　　　'LT2015用修正箇所 
     If Not      adDxfOut("", "DWG", False) Then Er: Exit Sub
     If Not Acad.DxfExtract(Cnt,ExtArr,"ENTITIES","","DIMENSION","1|11|21|42|70") Then Er: Exit Sub
     if Cnt=0 then
@@ -34,7 +34,7 @@ Acad.Wait 10
 
 
     If Not Acad.DxfUpdate(ExtArr) Then Er: Exit Sub
-''''If Not Acad.acDxfIn() Then Er: Exit Sub 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　'修正箇所 
+''''If Not Acad.acDxfIn() Then Er: Exit Sub 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　'LT2015用修正箇所 
     If Not      adDxfIn() Then Er: Exit Sub
     If Not Acad.acPostCommand("ERASE P^M^M") Then Er: Exit Sub
     
